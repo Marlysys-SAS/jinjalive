@@ -39,7 +39,7 @@ app.controller("JinjaLiveCtrl", function($scope, $http, FileSaver, Blob,
 	$scope.$watch("template + context + showwhitespaces", function() {
 		$scope.render();
 	})
-
+		
 	// Render template with context through POST on server
 	$scope.render = function() {
 		var data = {
@@ -47,7 +47,7 @@ app.controller("JinjaLiveCtrl", function($scope, $http, FileSaver, Blob,
 			context : $scope.context,
 			showwhitespaces : $scope.showwhitespaces,
 		};
-		$http.post('/render', data).then(function successCallback(response) {
+		$http.post(SCRIPT_ROOT + '/render', data).then(function successCallback(response) {
 			$scope.output = response.data;
 			$('.alert-danger').hide();
 			$('.alert-success').show();
