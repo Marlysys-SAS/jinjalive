@@ -15,6 +15,16 @@ Requirements
 - `Python <https://www.python.org/>`_.
 - `Bower <http://bower.io/#install-bower>`_.
 
+``python`` should be present on your system, but ``bower`` requires ``nodejs``.
+Here is the full procedure to install bower for Ubuntu:
+
+.. code-block:: shell
+
+    sudo apt-get update
+    sudo apt-get install nodejs npm
+    sudo npm install -g bower
+    sudo ln -s /usr/bin/nodejs /usr/bin/node
+    
 Installation
 ============
 
@@ -34,9 +44,14 @@ Install Python requirements and jinjalive package:
 
 .. code-block:: shell
 
-    pip install -r requirements.txt
-    python setup.py install
+    sudo pip install -r requirements.txt
+    sudo python setup.py build
+    sudo python setup.py install
 
+.. note::
+
+    A future version will include a WSGI file to serve the webapp directly from Apache or nginx.
+    
 Test your installation:
 
 .. code-block:: shell
@@ -62,5 +77,5 @@ Launch the server with:
 
     jinjalive-server
 
-Open your browser to http://127.0.0.1:8888
+Open your browser to http://<your_ip_address>:8888
 Enjoy !
