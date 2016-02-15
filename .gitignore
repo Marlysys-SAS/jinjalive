@@ -31,7 +31,7 @@ cover/*
 covhtml
 dist/*
 doc/source/api/*
-doc/build/*
+doc/build
 instances
 keeper
 keys

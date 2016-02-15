@@ -1,0 +1,5 @@
+tox
+nose
+mock
+flake8
+testrepository

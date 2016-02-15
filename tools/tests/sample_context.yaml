@@ -1,0 +1,9 @@
+foo_variable: foobar
+foolist_variable:
+    - first_element
+    - second_element
+    - third_element
+foodict_variable:
+    first_key: first_value
+    second_key: second_value
+    third_key: third_value

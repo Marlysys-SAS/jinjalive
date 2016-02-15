@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Marlysys Jinja Live</title>
+<link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+<script src="{{ url_for('bower.static', filename='angular/angular.min.js') }}"></script>
+<script src="{{ url_for('bower.static', filename='angular-sanitize/angular-sanitize.min.js') }}"></script>
+<script src="{{ url_for('bower.static', filename='angular-ui-codemirror/ui-codemirror.js') }}"></script>
+<script src="{{ url_for('bower.static', filename='angular-file-saver/dist/angular-file-saver.bundle.js') }}"></script>
+<script src="{{ url_for('bower.static', filename='angular-local-storage/dist/angular-local-storage.min.js') }}"></script>
+<script src="{{ url_for('bower.static', filename='angular-bootstrap/ui-bootstrap-tpls.min.js') }}"></script>
+<script src="{{ url_for('bower.static', filename='angular-animate/angular-animate.min.js') }}"></script>
+<script src="{{ url_for('bower.static', filename='jquery/dist/jquery.min.js') }}"></script>
+<script src="{{ url_for('bower.static', filename='bootstrap/dist/js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('bower.static', filename='codemirror/lib/codemirror.js') }}"></script>
+<script src="{{ url_for('bower.static', filename='angular-hotkeys/angular-hotkeys.min.js') }}"></script>
+
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+<script src="{{ url_for('static', filename='js/controller.js') }}"></script>
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('bower.static', filename='bootstrap/dist/css/bootstrap.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('bower.static', filename='font-awesome/css/font-awesome.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('bower.static', filename='codemirror/lib/codemirror.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('bower.static', filename='Raleway/raleway.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ url_for('bower.static', filename='RobotoMono/robotoMono.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ url_for('bower.static', filename='Qwigley/qwigley.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body ng-app="JinjaLive">
+    <script type=text/javascript>
+            SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
+    <div class="logo">
+        <i>Jl</i>
+    </div>
+    
+    <div class="title">
+        Jinja Live<br />
+        <p>Jinja rendering in realtime !</p>
+    </div>
+    
+    <hr />
+    
+    <div class="container" ng-controller="JinjaLiveCtrl">
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert">Jinja template rendered successfully</div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-danger" role="alert" ng-bind-html="error"></div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-code">&nbsp;&nbsp;</i>Jinja Template
+                            <span class="pull-right">
+                                <div class="btn-group small-menu">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-folder-open-o"></i>&nbsp;Load&nbsp;<span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li ng-repeat="entry in entries"><a href="#" ng-click="load(entry)">[[ entry ]]<i ng-if="entry != 'Sample Jinja'" class="fa fa-trash pull-right" ng-click="clear(entry)"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <button type="button" class="btn btn-default btn-xs" ng-click="save()">
+                                        <i class="fa fa-floppy-o"></i>&nbsp;Save
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-xs" ng-click="downloadTemplate()">
+                                        <i class="fa fa-download"></i>&nbsp;Download
+                                    </button>
+                                    <a role="button" class="btn btn-default btn-xs" href="http://jinja.pocoo.org/docs/dev/templates/" target="_blank"><i class="fa fa-question"></i>&nbsp;Jinja doc</a>
+                                </div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <ui-codemirror ui-codemirror-opts="templateEditorOptions" ng-model="template"></ui-codemirror>
+                    </div>
+                </div>
+                
+                <!-- 
+                <h3 class="subtitle">
+                    <i class="fa fa-code"></i>&nbsp;Jinja Template
+                </h3>
+                <h5 class="help">
+                    <div class="btn-group small-menu">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-folder-open-o"></i>&nbsp;Load&nbsp;<span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li ng-repeat="entry in entries"><a href="#" ng-click="load(entry)">[[ entry ]]<i ng-if="entry != 'Sample Jinja'" class="fa fa-trash pull-right" ng-click="clear(entry)"></i></a></li>
+                            </ul>
+                        </div>
+                        <button type="button" class="btn btn-default btn-sm" ng-click="save()">
+                            <i class="fa fa-floppy-o"></i>&nbsp;Save
+                        </button>
+                        <button type="button" class="btn btn-default btn-sm" ng-click="downloadTemplate()">
+                            <i class="fa fa-download"></i>&nbsp;Download
+                        </button>
+                        <a role="button" class="btn btn-default btn-sm" href="http://jinja.pocoo.org/docs/dev/templates/" target="_blank"><i class="fa fa-question"></i>&nbsp;Jinja doc</a>
+                    </div>
+                </h5>
+                 -->
+
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-sliders">&nbsp;&nbsp;</i>User Variables<span class="pull-right"><a href="http://json-schema.org/latest/json-schema-core.html" target="_blank">JSON</a> or <a href="http://www.yaml.org/spec/1.2/spec.html" target="_blank">YAML</a> supported</span></h3>
+                    </div>
+                    <div class="panel-body">
+                        <ui-codemirror ui-codemirror-opts="contextEditorOptions" ng-model="context"></ui-codemirror>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa fa-tv">&nbsp;&nbsp;</i>Rendered output<span class="pull-right"><label><input type="checkbox" class="showwhitespaces" ng-model="showwhitespaces" /> Show whitespaces</label></span></h3>
+                    </div>
+                    <div class="panel-body">
+                        <div id="render" ng-bind="output"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <footer>
+        <a href="http://marlysys.com" target="_blank">Marlysys</a> - 2016&nbsp;|&nbsp; <i class="fa fa-lightbulb-o"></i>&nbsp;<a href="https://github.com/abourguignon/jinja2-live-parser" target="_blank">Inspiration</a>
+    </footer>
+    <script type="text/ng-template" id="saveEntry.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Save template and context</h3>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal">
+                <div class="form-group" ng-if="entries">
+                    <label class="col-sm-5 control-label" for="entriesList">Choose an existing name:</label>
+                    <div class="col-sm-7">
+                        <ul id="entriesList">
+                            <li ng-repeat="entry in entries">
+                                <a href="#" ng-click="$event.preventDefault(); ok(entry)">[[ entry ]]</a>
+                            </li>
+                            <li ng-if="entries.length == 0">No entries</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-5 control-label" for="entryName">...or enter a new name:</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" id="entryName" placeholder="Name" ng-model="entry_name">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-success btn-sm" type="button" ng-click="ok()">OK</button>
+            <button class="btn btn-danger btn-sm" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+</body>
+</html>

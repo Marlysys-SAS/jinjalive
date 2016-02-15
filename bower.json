@@ -1,0 +1,40 @@
+{
+  "name": "jinjalive",
+  "authors": [
+    "Roland SAIKALI <rsaikali@marlysys.com>"
+  ],
+  "description": "Jinja Live",
+  "main": "",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "jinja2",
+    "rendering",
+    "marlysys"
+  ],
+  "license": "MIT",
+  "homepage": "www.marlysys.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "jinjalive/server/bower"
+  ],
+  "dependencies": {
+    "angular": "1.5.0",
+    "angular-animate": "1.5.0",
+    "angular-hotkeys": "0.2.2",
+    "angular-sanitize": "1.5.0",
+    "angular-bootstrap": "1.1.2",
+    "angular-file-saver": "1.0.3",
+    "angular-ui-codemirror": "0.3.0",
+    "angular-local-storage": "0.2.3",
+    "bootstrap": "3.3.6",
+    "codemirror": "5.11.0",
+    "font-awesome": "4.5.0",
+    "jquery": "2.2.0",
+    "Raleway": "https://google-fonts.azurewebsites.net/googleFonts/Raleway?family=Raleway:300",
+    "RobotoMono": "https://google-fonts.azurewebsites.net/googleFonts/RobotoMono?family=Roboto+Mono:400",
+    "Qwigley": "https://google-fonts.azurewebsites.net/googleFonts/Qwigley?family=Qwigley"
+  }
+}
