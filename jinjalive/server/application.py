@@ -23,9 +23,8 @@ import traceback
 from flask import Flask, render_template, request
 from flask_bower import Bower
 from flask_cache import Cache
-import yaml
-
 from jinjalive.jinja.render import jinja_render
+import yaml
 
 
 # Flask application
@@ -84,7 +83,7 @@ def render():
 
 def main():
     app.debug = True
-    app.run(port=8888)
+    app.run(host='0.0.0.0', port=8888)
 
 if __name__ == "__main__":
     main()
