@@ -16,7 +16,26 @@
 
 import setuptools
 
+
+with open('requirements.txt') as f:
+    required = f.read().splitlines()
+
 setuptools.setup(
-    setup_requires=['pbr'],
+    setup_requires=['wheel', 'pbr'],
     pbr=True,
+    install_requires=required,
+    classifiers=[
+        'Development Status :: 5 - Production/Stable',
+        'Environment :: Console',
+        'Environment :: Web Environment',
+        'Framework :: Flask',
+        'Intended Audience :: Developers',
+        'Intended Audience :: System Administrators',
+        'Topic :: Utilities',
+        'Topic :: Software Development',
+        'License :: OSI Approved :: Apache Software License',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.6',
+        'Programming Language :: Python :: 2.7',
+    ]
 )

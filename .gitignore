@@ -29,7 +29,7 @@ ChangeLog
 coverage.xml
 cover/*
 covhtml
-dist/*
+dist
 doc/source/api/*
 doc/build
 instances
