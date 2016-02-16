@@ -1,7 +1,13 @@
 [run]
-branch = True
+branch = False
 source = jinjalive
-omit = jinjalive/tests/*
+omit   =
+         jinjalive/tests/*
+         *__init__.py
 
 [report]
-ignore-errors = True
+show_missing=True
+precision=1
+
+[html]
+title=JinjaLive unittests code coverage

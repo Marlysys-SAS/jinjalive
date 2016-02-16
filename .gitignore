@@ -38,5 +38,4 @@ keys
 local_settings.py
 MANIFEST
 nosetests.xml
-jinjalive/tests/coverage/*
 jinjalive/server/static/bower

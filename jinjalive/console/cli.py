@@ -15,11 +15,11 @@
 # under the License.
 
 from datetime import datetime
+from jinjalive._options import cli_opts
+from jinjalive.jinja.render import jinja_render
 import os
 import sys
 
-from jinjalive._options import cli_opts
-from jinjalive.jinja.render import jinja_render
 from oslo_config import cfg
 from oslo_log import log
 import yaml
@@ -28,6 +28,8 @@ import yaml
 CONF = cfg.CONF
 CONF.register_cli_opts(cli_opts)
 
+# Register log options
+log.register_options(CONF)
 LOG = log.getLogger(__name__)
 
 
@@ -97,9 +99,6 @@ def main():
 
     Exists with error code if an error occurs.
     '''
-    # Register log options
-    log.register_options(CONF)
-
     # Parse command line argument as part of CONF.
     try:
         CONF(sys.argv[1:])

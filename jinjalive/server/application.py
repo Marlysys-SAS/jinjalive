@@ -16,14 +16,13 @@
 
 from __future__ import unicode_literals
 
-import HTMLParser
+from jinjalive.jinja.render import jinja_render
 import json
 import traceback
 
 from flask import Flask, render_template, request
 from flask_bower import Bower
 from flask_cache import Cache
-from jinjalive.jinja.render import jinja_render
 import yaml
 
 

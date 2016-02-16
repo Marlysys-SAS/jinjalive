@@ -1,7 +1,7 @@
 # flake8: noqa
 # -*- coding: utf-8 -*-
 #
-# Jinja Live Unveiler documentation build configuration file, created by
+# JinjaLive documentation build configuration file, created by
 # sphinx-quickstart on Sat May 10 13:26:51 2014.
 #
 # This file is execfile()d with the current directory set to its
@@ -48,7 +48,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Jinja Live'
+project = u'JinjaLive'
 copyright = u'2016, Marlysys'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -202,7 +202,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     ('index', 'jinjalive.tex',
-     u'Jinja Live Unveiler Documentation',
+     u'JinjaLive Documentation',
      u'Marlysys', 'manual'),
 ]
 
@@ -233,7 +233,7 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [
     ('index', 'jinjalive',
-     u'Jinja Live Unveiler Documentation',
+     u'JinjaLive Documentation',
      [u'Marlysys'], 1)
 ]
 
@@ -248,8 +248,8 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
     ('index', 'jinjalive',
-     u'Jinja Live Unveiler Documentation',
-     u'Marlysys', 'Jinja Live Unveiler',
+     u'JinjaLive Documentation',
+     u'Marlysys', 'JinjaLive',
      'Jinja realtime editor',
      'Miscellaneous'),
 ]
