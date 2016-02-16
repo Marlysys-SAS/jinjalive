@@ -29,8 +29,8 @@ CONF = cfg.CONF
 CONF.register_cli_opts(cli_opts)
 
 # Register log options
-log.register_options(CONF)
 LOG = log.getLogger(__name__)
+log.register_options(CONF)
 
 
 class JinjaLive(object):
@@ -102,7 +102,8 @@ def main():
     # Parse command line argument as part of CONF.
     try:
         CONF(sys.argv[1:])
-    except cfg.RequiredOptError:
+    except cfg.RequiredOptError as e:
+        LOG.error(str(e))
         CONF.print_help()
         sys.exit(2)
 

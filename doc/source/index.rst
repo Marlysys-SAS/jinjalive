@@ -27,7 +27,7 @@ Nowadays, ``python`` should ever be present on your system, but ``bower`` usuall
 
 ``bower`` requires ``nodejs``. Here is the full procedure to install bower for Ubuntu:
 
-.. code-block:: shell
+.. code-block:: bash
 
     sudo apt-get update
     sudo apt-get install nodejs npm
@@ -42,22 +42,22 @@ JinjaLive installation
 
 Go to project directory:
 
-.. code-block:: shell
+.. code-block:: bash
 
     cd jinjalive
 
 Install bower requirements:
 
-.. code-block:: shell
+.. code-block:: bash
 
     bower install
 
 Install Python requirements and JinjaLive package:
 
-.. code-block:: shell
+.. code-block:: bash
 
     sudo pip install -r requirements.txt
-    sudo python setup.py build
+    python setup.py build
     sudo python setup.py install
 
 Apache installation (optional)
@@ -65,7 +65,7 @@ Apache installation (optional)
 
 If you want to serve the JinjaLive web application behind Apache, please use WSGI.
 
-.. code-block:: shell
+.. code-block:: bash
 
     sudo apt-get update
     sudo apt-get install apache2 libapache2-mod-wsgi
@@ -73,7 +73,7 @@ If you want to serve the JinjaLive web application behind Apache, please use WSG
     
 Here is a sample Apache virtualhost:
 
-.. code-block:: xml
+.. code-block:: apacheconf
 
     <VirtualHost *:80>
 
@@ -92,6 +92,19 @@ Here is a sample Apache virtualhost:
     
     </VirtualHost>
 
+Tests
+=====
+
+JinjaLive embeds unittests to ensure both functionnalities coverage but also Python code quality.
+
+The test suite can be launched with ``tox``:
+
+.. code-block:: bash
+
+    cd jinjalive
+    sudo pip install -r test-requirements.txt
+    tox
+
 Usage
 =====
 
@@ -100,7 +113,7 @@ Command-line usage
 
 Given a context file and a template file, JinjaLive will generate the output file:
 
-.. code-block:: shell
+.. code-block:: bash
 
     jinjalive -cf <context_file> -tf <template_file> -of <output_file>
 
@@ -115,16 +128,12 @@ Web application
     
 Launch the JinjaLive server with:
 
-.. code-block:: shell
+.. code-block:: bash
 
     jinjalive-server
 
 Open your browser to ``http://<your_ip_address>:8888``
 
-Screenshot
-==========
+.. seealso::
 
-.. image:: ./_static/screenshot.png
-
-
-    
+    Check out the :ref:`api-doc`.
