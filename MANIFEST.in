@@ -1,1 +1,2 @@
+include jinjalive/jinjalive.wsgi
 recursive-include jinjalive/server/static/bower *

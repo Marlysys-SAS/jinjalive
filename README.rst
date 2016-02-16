@@ -50,8 +50,35 @@ Install Python requirements and jinjalive package:
 
 .. note::
 
-    A future version will include a WSGI file to serve the webapp directly from Apache or nginx.
+    If you want to host the Jinjalive web application behind Apache, please use WSGI.
     
+    .. code-block:: shell
+
+        sudo apt-get update
+        sudo apt-get install apache2 libapache2-mod-wsgi
+        sudo a2enmod wsgi
+        
+    Here is a sample Apache virtualhost:
+    
+    .. code-block:: xml
+
+        <VirtualHost *:80>
+    
+            WSGIDaemonProcess jinjalive threads=5
+            WSGIScriptAlias /jinja /usr/local/lib/python2.7/dist-packages/jinjalive/jinjalive.wsgi
+        
+            <Directory /usr/local/lib/python2.7/dist-packages/jinjalive>
+                WSGIProcessGroup jinjalive
+                WSGIApplicationGroup %{GLOBAL}
+                WSGIScriptReloading On
+                Require all granted
+            </Directory>
+        
+            ErrorLog ${APACHE_LOG_DIR}/jinjalive.error.log
+            CustomLog ${APACHE_LOG_DIR}/jinjalive.access.log combined
+        
+        </VirtualHost>
+        
 Test your installation:
 
 .. code-block:: shell
